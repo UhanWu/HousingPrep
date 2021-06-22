@@ -1,7 +1,7 @@
 ---
 title: "Housing Fluctuation using Case-Shiller Index"
 description: |
-  This project is about observing and analysing the housing fluctuation of an single familly house from 1987 to Janurary 2021 of three cities: Boston, New York City and Sanfrancisco. 
+  This project is about observing and analysing the housing fluctuation of an single familly house from 1987 to Janurary 2021 of three cities: Boston, New York City and San Francisco. 
 site: distill::distill_website
 ---
 
@@ -56,10 +56,11 @@ data_plotly <- data_final%>%
 ggplot(mapping=aes(x = DATE,y=Data,color=City,group=1, text = paste("Date:",DATE, "\n")))+
   geom_line()+
   scale_x_discrete(breaks=12)+
-  labs(title="Housing Price fluctuation between 1984 and 2021 of three Cities",x="Time (1987-2021)",y="Case-Shiller index")
+  labs(title="Housing Price Fluctuation of Three Cities",x="Time (1987-2021)",y="Case-Shiller index")
 
    ggplotly(data_plotly, tooltip = "text")
      
 ```
 
-"San Francisco endured the greatest decline in year 2008"
+#Analysis#
+San Francisco endured the greatest decline in 2008 Housing bubble, and generally for all three cities housing price shows an upward sloping trend,which means that the value of an single-familly house keep increasing over time. 
