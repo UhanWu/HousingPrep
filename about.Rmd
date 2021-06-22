@@ -1,7 +1,7 @@
 ---
 title: "About this site"
 description: |
-  Motivation and Experience
+  Motivation,Experience and Thanks
 ---
 
 ```{r setup, include=FALSE}
@@ -11,5 +11,5 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Motivation ##
 The Motivation for this project come from my mother, when she once tell me "it looks like the housing price rises again, I heard that you join a camp can you use data to shows me which season housing price increases tha most", so I try that first using the exact data, but later decided to change to this project as the previous attempt failed miserably, I might come after it when I finish this project.  
 
-## Experience ##
-This is the first official websites I created on my own, I spends hours and days trying to figuring out which data best suits this project, as well as what code should I write to make this project possible. I give my sincere thanks to Preceptor Kane and the TFs, with the class lecture and tutorials, start from creating visualization to making a project, I've learned alot, if I would do everything by myself, I wouldn't be able to reach this far and getting this nice looking graphics on your screen, my second thanks is to my parents who supportted me through the heavy workload, as I have both math and data science on the same day, and last but not least my great thanks to my math teacher Ms.Widener who reccomended this course to me, without here I woudn't be able to have this wonderful experience. 
+## Experience and Thanks ##
+This is the first official websites I created on my own, I spends hours and days trying to figuring out which data best suits this project, as well as what code should I write to make this project possible. I give my sincere thanks to Preceptor Kane and the TFs, with the class lecture and tutorials, start from creating visualization to making a project, I've learned a lot, if I would do everything by myself, I wouldn't be able to reach this far and getting this nice looking graph on your screen without the support from them, my second thanks is to my parents who supported me through the heavy workload, as I have both math and data science on the same day, and last but not least my great thanks to my math teacher Ms.Widener who recommended this course to me, without here I wouldn't be able to have this wonderful experience. 
