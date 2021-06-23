@@ -29,6 +29,7 @@ library(gapminder)
 raw_housing_BO <- read.csv("BOXRSA.csv")
 raw_housing_NY <- read.csv("NYXRSA.csv")
 raw_housing_SF <- read.csv("SFXRSA.csv")
+raw_housing_COM <- read.csv("SPCS20RSA.csv")
 
 housing_BO <- raw_housing_BO %>%
 mutate(City="Boston") %>%
@@ -42,7 +43,11 @@ housing_SF <- raw_housing_SF %>%
   mutate(City ="San Francisco")%>%
 mutate(Data_housing= SFXRSA)
 
-clean_housing_data <-bind_rows(housing_BO,housing_NY,housing_SF)
+housing_COM <- raw_housing_COM %>%
+mutate(City="Case-Shiller Composite") %>%
+mutate(Data_housing= SPCS20RSA)
+
+clean_housing_data <-bind_rows(housing_BO,housing_NY,housing_SF,housing_COM)
 ```
 
 ```{r,echo=FALSE}
@@ -61,7 +66,6 @@ ggplot(mapping=aes(x = DATE,y=Data_housing,color=City,group=1, text = paste("Dat
    ggplotly(data_housing_plotly, tooltip = "text")
      
 ```
-
 
 ```{r}
 raw_pop_BO <- read.csv("BOSPOP.csv")
@@ -90,13 +94,12 @@ select(DATE,Data_pop,City)%>%
   group_by(City) 
 ```
 
-
 ```{r}
 data_pop_plotly <- data_pop_final%>%
 ggplot(mapping=aes(x = DATE,y=Data_pop,color=City,group=1, text = paste("Date:",DATE, "\n")))+
   geom_line()+
   scale_x_discrete(breaks=12)+
-  labs(title="Population of Three Major Cities in US Overtime",x="Time (2000-2020)",y="Population In Thousands")
+  labs(title="Population of Three Major Cities in US Overtime",x="Time (2000-2020)",y="Metro Population In Thousands")
 
    ggplotly(data_pop_plotly, tooltip = "text")
      
@@ -104,7 +107,7 @@ ggplot(mapping=aes(x = DATE,y=Data_pop,color=City,group=1, text = paste("Date:",
 
 
 # Analysis graph 1 #
-San Francisco endured the greatest decline in 2008 Housing bubble, as well as the greatest increased after the crash, and for all three cities housing price shows an upward sloping trend, which means that the value of an single-family house keep increasing over time. 
+San Francisco endured the greatest decline in 2008 Housing bubble, as well as the greatest increased after the crash,much higher than the Case-Shiller 20 City Composite which measures the average housing values of 20 major cities in the US, and for all three cities housing price shows an upward sloping trend, which means that the value of an single-family house keep increasing over time. 
 
 
 # Analysis graph 2 #
