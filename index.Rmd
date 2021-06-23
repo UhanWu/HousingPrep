@@ -26,41 +26,88 @@ library(gapminder)
 ```
 
 ```{r}
-raw_data_BO <- read.csv("BOXRSA.csv")
-raw_data_NY <- read.csv("NYXRSA.csv")
-raw_data_SF <- read.csv("SFXRSA.csv")
+raw_housing_BO <- read.csv("BOXRSA.csv")
+raw_housing_NY <- read.csv("NYXRSA.csv")
+raw_housing_SF <- read.csv("SFXRSA.csv")
 
-data_BO <- raw_data_BO %>%
+housing_BO <- raw_housing_BO %>%
 mutate(City="Boston") %>%
-mutate(Data= BOXRSA)
+mutate(Data_housing= BOXRSA)
 
-data_NY <- raw_data_NY %>%
+housing_NY <- raw_housing_NY %>%
   mutate(City="New York")%>%
-  mutate(Data= NYXRSA)
+  mutate(Data_housing= NYXRSA)
 
-data_SF <- raw_data_SF %>%
+housing_SF <- raw_housing_SF %>%
   mutate(City ="San Francisco")%>%
-mutate(Data= SFXRSA)
+mutate(Data_housing= SFXRSA)
 
-clean_data <-bind_rows(data_BO,data_NY,data_SF)
+clean_housing_data <-bind_rows(housing_BO,housing_NY,housing_SF)
 ```
 
 ```{r,echo=FALSE}
-data_final <- clean_data %>%
-select(DATE,Data,City)%>%
+data_housing_final <- clean_housing_data %>%
+select(DATE,Data_housing,City)%>%
   group_by(City) 
 ```
 
 ```{r}
-data_plotly <- data_final%>%
-ggplot(mapping=aes(x = DATE,y=Data,color=City,group=1, text = paste("Date:",DATE, "\n")))+
+data_housing_plotly <- data_housing_final%>%
+ggplot(mapping=aes(x = DATE,y=Data_housing,color=City,group=1, text = paste("Date:",DATE, "\n")))+
   geom_line()+
   scale_x_discrete(breaks=12)+
-  labs(title="Housing Price Fluctuation of Three Major Cities In US",x="Time (1987-2021)",y="Case-Shiller index")
+  labs(title="Housing Price Fluctuation of Three Major Cities In US",x="Time (1987-2021)",y="Case-Shiller index",caption="Sources:Federal Reserve Economic Data")
 
-   ggplotly(data_plotly, tooltip = "text")
+   ggplotly(data_housing_plotly, tooltip = "text")
      
 ```
 
-# Analysis #
+
+```{r}
+raw_pop_BO <- read.csv("Boston-population-2021-06-22.csv")
+raw_pop_NY <- read.csv("New York City-population-2021-06-22.csv")
+raw_pop_SF <- read.csv("San Francisco-population-2021-06-22.csv")
+
+pop_BO <- raw_pop_BO %>%
+mutate(City="Boston") %>%
+mutate(Data_pop= Population)
+
+pop_NY <- raw_pop_NY %>%
+  mutate(City="New York")%>%
+  mutate(Data_pop= Population)
+
+pop_SF <- raw_pop_SF %>%
+  mutate(City ="San Francisco")%>%
+mutate(Data_pop= Population)
+
+clean_pop_data <-bind_rows(pop_BO,pop_NY,pop_SF)
+```
+
+
+```{r,echo=FALSE}
+data_pop_final <- clean_pop_data %>%
+select(date,Data_pop,City)%>%
+  group_by(City) 
+```
+
+
+```{r}
+data_pop_plotly <- data_pop_final%>%
+ggplot(mapping=aes(x = date,y=Data_pop,color=City,group=1, text = paste("Date:",date, "\n")))+
+  geom_line()+
+  scale_x_discrete(breaks=12)+
+  labs(title="Population of Three Major Cities in US Overtime",x="Time (1987-2020)",y="Population",caption="Sources:Macrotrends.net")
+
+   ggplotly(data_pop_plotly, tooltip = "text")
+     
+```
+
+
+# Analysis graph 1 #
 San Francisco endured the greatest decline in 2008 Housing bubble, as well as the greatest increased after the crash, and for all three cities housing price shows an upward sloping trend, which means that the value of an single-family house keep increasing over time. 
+
+
+# Analysis graph 2 #
+By comparing the first graph and the second, it seems like population is not an factor on housing as San Francisco does not have an greater population than New York City and Boston, and it seems like it doesn't have an huge increase in population than the other two cities, we can conclude by saying population is not an major factor that determine the housing Price. 
+
+
