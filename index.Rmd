@@ -25,7 +25,9 @@ library(gapminder)
 # https://rstudio.github.io/distill/publish_website.html#github-pages
 ```
 
+# Housing Fluctuation #
 ```{r}
+
 raw_housing_BO <- read.csv("BOXRSA.csv")
 raw_housing_NY <- read.csv("NYXRSA.csv")
 raw_housing_SF <- read.csv("SFXRSA.csv")
@@ -67,6 +69,7 @@ ggplot(mapping=aes(x = DATE,y=Data_housing,color=City,group=1, text = paste("Dat
      
 ```
 
+# Metropolitan Population #
 ```{r}
 raw_pop_BO <- read.csv("BOSPOP.csv")
 raw_pop_NY <- read.csv("NYTPOP.csv")
@@ -87,7 +90,6 @@ mutate(Data_pop= SFCPOP)
 clean_pop_data <-bind_rows(pop_BO,pop_NY,pop_SF)
 ```
 
-
 ```{r,echo=FALSE}
 data_pop_final <- clean_pop_data %>%
 select(DATE,Data_pop,City)%>%
@@ -105,12 +107,55 @@ ggplot(mapping=aes(x = DATE,y=Data_pop,color=City,group=1, text = paste("Date:",
      
 ```
 
+# Real Median Income #
+```{r}
+raw_Income_MA <- read.csv("MedianIncomeMA.csv")
+raw_Income_NY <- read.csv("MedianIncomeNY.csv")
+raw_Income_CA <- read.csv("MedianIncomeCA.csv")
+raw_Income_USA <- read.csv("MedianIncomeUSA.csv")
 
-# Analysis graph 1 #
+Income_MA <- raw_Income_MA %>%
+mutate(States="Massachusetts") %>%
+mutate(Data_Income=MEHOINUSMAA672N)
+
+Income_NY <- raw_Income_NY %>%
+  mutate(States="New York")%>%
+  mutate(Data_Income= MEHOINUSNYA672N)
+
+Income_CA <- raw_Income_CA %>%
+  mutate(States ="California")%>%
+mutate(Data_Income=MEHOINUSCAA672N)
+
+clean_Income_data <-bind_rows(Income_MA,Income_NY,Income_CA)
+```
+
+```{r,echo=FALSE}
+data_Income_final <- clean_Income_data %>%
+select(DATE,Data_Income,States)%>%
+  group_by(States) 
+```
+
+```{r}
+data_Income_plotly <- data_Income_final%>%
+ggplot(mapping=aes(x = DATE,y=Data_Income,color=States,group=1, text = paste("Date:",DATE, "\n")))+
+  geom_line()+
+  scale_x_discrete(breaks=12)+
+  labs(title="Real Median Household Income Of Three Cities",x="Time (1984-2020)",y="US Adjusted Dollar")
+
+   ggplotly(data_Income_plotly, tooltip = "text")
+     
+```
+
+# Analysis #
+
+### Analysis Graph 1 ###
 San Francisco endured the greatest decline in 2008 Housing bubble, as well as the greatest increased after the crash,much higher than the Case-Shiller 20 City Composite which measures the average housing values of 20 major cities in the US, and for all three cities housing price shows an upward sloping trend, which means that the value of an single-family house keep increasing over time. 
 
 
-# Analysis graph 2 #
+### Analysis Graph 2 ###
 By comparing the first graph and the second, it seems like population is not an factor on housing as San Francisco does not have an greater population than New York City and Boston, and it seems like it doesn't have an huge increase in population than the other two cities, we can conclude by saying population is not an major factor that determine the housing Price. 
+
+### Analysis Graph 3 ###
+Comparing the first graph and the third, we can say that income is one of the factors that influenced the Housing Price as the ups and downs of the Income graph matched up with the Housing graph. 
 
 
