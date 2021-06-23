@@ -59,7 +59,6 @@ ggplot(mapping=aes(x = DATE,y=Data_housing,color=City,group=1, text = paste("Dat
   labs(title="Housing Price Fluctuation of Three Major Cities In US",x="Time (2000-2021)",y="Case-Shiller Housing Price Index")
 
    ggplotly(data_housing_plotly, tooltip = "text")
-   par(mfrow=c(1,2))
      
 ```
 
