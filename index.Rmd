@@ -56,7 +56,7 @@ data_housing_plotly <- data_housing_final%>%
 ggplot(mapping=aes(x = DATE,y=Data_housing,color=City,group=1, text = paste("Date:",DATE, "\n")))+
   geom_line()+
   scale_x_discrete(breaks=12)+
-  labs(title="Housing Price Fluctuation of Three Major Cities In US",x="Time (1987-2021)",y="Case-Shiller index",caption="Sources:Federal Reserve Economic Data")
+  labs(title="Housing Price Fluctuation of Three Major Cities In US",x="Time (1987-2021)",y="Case-Shiller index",caption=)
 
    ggplotly(data_housing_plotly, tooltip = "text")
      
@@ -64,21 +64,21 @@ ggplot(mapping=aes(x = DATE,y=Data_housing,color=City,group=1, text = paste("Dat
 
 
 ```{r}
-raw_pop_BO <- read.csv("Boston-population-2021-06-22.csv")
-raw_pop_NY <- read.csv("New York City-population-2021-06-22.csv")
-raw_pop_SF <- read.csv("San Francisco-population-2021-06-22.csv")
+raw_pop_BO <- read.csv("BOSPOP.csv")
+raw_pop_NY <- read.csv("NYTPOP.csv")
+raw_pop_SF <- read.csv("SFCPOP.csv")
 
 pop_BO <- raw_pop_BO %>%
 mutate(City="Boston") %>%
-mutate(Data_pop= Population)
+mutate(Data_pop= BOSPOP)
 
 pop_NY <- raw_pop_NY %>%
   mutate(City="New York")%>%
-  mutate(Data_pop= Population)
+  mutate(Data_pop= NYTPOP)
 
 pop_SF <- raw_pop_SF %>%
   mutate(City ="San Francisco")%>%
-mutate(Data_pop= Population)
+mutate(Data_pop= SFCPOP)
 
 clean_pop_data <-bind_rows(pop_BO,pop_NY,pop_SF)
 ```
@@ -86,17 +86,17 @@ clean_pop_data <-bind_rows(pop_BO,pop_NY,pop_SF)
 
 ```{r,echo=FALSE}
 data_pop_final <- clean_pop_data %>%
-select(date,Data_pop,City)%>%
+select(DATE,Data_pop,City)%>%
   group_by(City) 
 ```
 
 
 ```{r}
 data_pop_plotly <- data_pop_final%>%
-ggplot(mapping=aes(x = date,y=Data_pop,color=City,group=1, text = paste("Date:",date, "\n")))+
+ggplot(mapping=aes(x = DATE,y=Data_pop,color=City,group=1, text = paste("Date:",DATE, "\n")))+
   geom_line()+
   scale_x_discrete(breaks=12)+
-  labs(title="Population of Three Major Cities in US Overtime",x="Time (1987-2020)",y="Population",caption="Sources:Macrotrends.net")
+  labs(title="Population of Three Major Cities in US Overtime",x="Time (2000-2020)",y="Population In Thousands")
 
    ggplotly(data_pop_plotly, tooltip = "text")
      
