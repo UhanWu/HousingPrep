@@ -150,6 +150,17 @@ ggplot(mapping=aes(x = DATE,y=Data_Income,color=States,group=1, text = paste("Da
      
 ```
 
+```{r}
+housing_supply_USA <- read_csv("MSACSR.csv")
+
+supply_plotly <- housing_supply_USA%>%
+ggplot(mapping=aes(x = DATE,y=MSACSR,group=1, text = paste("Date:",DATE, "\n")))+
+  geom_line()+
+  labs(title = "Monthly Supply of Houses in the United States",x= "Date(2000-2021)",y="Month's Supply")
+
+ggplotly(supply_plotly, tooltip = "text")
+```
+
 # Analysis #
 
 ### Analysis Graph 1 ###
@@ -161,5 +172,9 @@ By comparing the first graph and the second, it seems like population is not an 
 
 ### Analysis Graph 3 ###
 Comparing the first graph and the third, we can say that income is one of the factors that influenced the Housing Price as the ups and downs of the Income graph matched up with the Housing graph. 
+
+### Analysis Graph 4 ###
+This graph represent the general "Supply" curve for housing price, comparing the first graph and this graph we can see that the price follows general models of supply and demand curve in economics, where more supply less demand means price decrease, less supply more demand means price increase. 
+
 
 
