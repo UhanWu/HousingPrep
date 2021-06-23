@@ -126,7 +126,11 @@ Income_CA <- raw_Income_CA %>%
   mutate(States ="California")%>%
 mutate(Data_Income=MEHOINUSCAA672N)
 
-clean_Income_data <-bind_rows(Income_MA,Income_NY,Income_CA)
+Income_USA <- raw_Income_USA %>%
+mutate(States="United States") %>%
+mutate(Data_Income=MEHOINUSA672N)
+
+clean_Income_data <-bind_rows(Income_MA,Income_NY,Income_CA,Income_USA)
 ```
 
 ```{r,echo=FALSE}
@@ -140,7 +144,7 @@ data_Income_plotly <- data_Income_final%>%
 ggplot(mapping=aes(x = DATE,y=Data_Income,color=States,group=1, text = paste("Date:",DATE, "\n")))+
   geom_line()+
   scale_x_discrete(breaks=12)+
-  labs(title="Real Median Household Income Of Three Cities",x="Time (1984-2020)",y="US Adjusted Dollar")
+  labs(title="Real Median Household Income Of Three Cities",x="Time (2000-2020)",y="US Adjusted Dollar")
 
    ggplotly(data_Income_plotly, tooltip = "text")
      
