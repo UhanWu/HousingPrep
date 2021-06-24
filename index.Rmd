@@ -1,10 +1,9 @@
 ---
-title: "Housing Fluctuation using Case-Shiller Index"
+title: "Housing Fluctuation Using Case-Shiller Index"
 description: |
   This project is about observing and analysing the housing fluctuation of an single familly house from 1987 to Janurary 2021 of three cities: Boston, New York City and San Francisco. 
 site: distill::distill_website
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
@@ -102,7 +101,6 @@ data_pop_plotly <- data_pop_final%>%
 ggplot(mapping=aes(x = DATE,y=Data_pop,color=City,group=1, text = paste("Date:",DATE, "\n")))+
   geom_line()+
   scale_x_discrete(breaks=12)+
-  geom_smooth(method="lm",se=FALSE)+
   labs(title="Population of Three Major Cities in US Overtime",x="Time (2000-2020)",y="Metro Population In Thousands")
 
    ggplotly(data_pop_plotly, tooltip = "text")
