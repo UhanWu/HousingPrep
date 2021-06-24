@@ -11,4 +11,6 @@ navbar:
       href: about.html
     - text: "Source"
       href: source.html
+    - text: "Thanks"
+      href: thanks.html
 output: distill::distill_article

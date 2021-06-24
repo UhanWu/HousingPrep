@@ -1,7 +1,7 @@
 ---
 title: "Housing Fluctuation Using Case-Shiller Index"
 description: |
-  This project is about observing and analysing the housing fluctuation of an single familly house from 1987 to Janurary 2021 of three cities: Boston, New York City and San Francisco. 
+  The mission of this project is to observe and analyse the housing fluctuation of an single familly house from 2001 to 2021 of three cities: Boston, New York City and San Francisco using Case-Shiller Housing Index, as well as trying to determine the factors that might influenced the housing prices.  
 site: distill::distill_website
 ---
 ```{r setup, include=FALSE}
@@ -151,6 +151,7 @@ ggplot(mapping=aes(x = DATE,y=Data_Income,color=States,group=1, text = paste("Da
      
 ```
 
+# Housing Supply (Monthly) #
 ```{r}
 housing_supply_USA <- read_csv("MSACSR.csv")
 
