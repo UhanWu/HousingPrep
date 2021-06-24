@@ -16,6 +16,8 @@ library(gifski)
 library(png)
 library(patchwork)
 library(gapminder)
+library(cowplot)
+library(ggplot2)
 
 # Learn more about creating websites with Distill at:
 # https://rstudio.github.io/distill/website.html
@@ -103,7 +105,7 @@ ggplot(mapping=aes(x = DATE,y=Data_pop,color=City,group=1, text = paste("Date:",
   scale_x_discrete(breaks=12)+
   labs(title="Population of Three Major Cities in US Overtime",x="Time (2000-2020)",y="Metro Population In Thousands")
 
-   ggplotly(data_pop_plotly, tooltip = "text")
+ggplotly(data_pop_plotly, tooltip = "text")
      
 ```
 
