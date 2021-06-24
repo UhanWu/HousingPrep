@@ -8,7 +8,38 @@ output: distill::distill_article
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+# Federal Reserve Economic Data #
 [Federal Reserve Economic Data(FRED)](https://fred.stlouisfed.org/)
+
+## Case-Shiller Home Price Index ##
+[S&P/Case-Shiller NY-New York Home Price Index(FRED)](https://fred.stlouisfed.org/series/NYXRSA)
+
+[S&P/Case-Shiller CA-San Francisco Home Price Index(FRED)](https://fred.stlouisfed.org/series/SFXRSA)
+
+[S&P/Case-Shiller MA-Boston Home Price Index(FRED)](https://fred.stlouisfed.org/series/BOXRSA)
+
+[S&P/Case-Shiller 20-City Composite Home Price Index(FRED)](https://fred.stlouisfed.org/series/SPCS20RSA)
+
+## Metropolitan Population ##
+
+[Resident Population in New York-Newark-Jersey City(FRED)](https://fred.stlouisfed.org/series/NYTPOP)
+
+[Resident Population in Boston-Cambridge-Newton(FRED)](https://fred.stlouisfed.org/series/BOSPOP)
+
+[Resident Population in San Francisco-Oakland-Hayward(FRED)](https://fred.stlouisfed.org/series/SFCPOP)
+
+## Income ##
+
+[Real Median Household Income in Massachusetts(FRED)](https://fred.stlouisfed.org/series/MEHOINUSMAA672N)
+
+[Real Median Household Income in New York(FRED)](https://fred.stlouisfed.org/series/MEHOINUSNYA672N)
+
+[Real Median Household Income in California(FRED)](https://fred.stlouisfed.org/series/MEHOINUSCAA672N)
+
+[Real Median Household Income in the United States (FRED)](https://fred.stlouisfed.org/series/MEHOINUSA672N)
+
+## Supply Of Houses ##
+[Monthly Supply of Houses in the United States(FRED)](https://fred.stlouisfed.org/series/MSACSR)
 
 
 Distill is a publication format for scientific and technical writing, native to the web. 
