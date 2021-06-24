@@ -18,6 +18,8 @@ library(patchwork)
 library(gapminder)
 library(cowplot)
 library(ggplot2)
+library(ggthemes)
+
 
 # Learn more about creating websites with Distill at:
 # https://rstudio.github.io/distill/website.html
@@ -61,11 +63,12 @@ select(DATE,Data_housing,City)%>%
 
 ```{r}
 data_housing_plotly <- data_housing_final%>%
-ggplot(mapping=aes(x = DATE,y=Data_housing,color=City,group=1, text = paste("Date:",DATE, "\n")))+
+ggplot(mapping=aes(x = DATE,y=Data_housing,color=City,group=1, text = paste("</br>Date:",DATE, '</br> Value:',Data_housing)))+
   geom_line()+
   scale_x_discrete(breaks=12)+
   geom_smooth(method="lm")+
-  labs(title="Housing Price Fluctuation of Three Major Cities In US",x="Time (2000-2021)",y="Case-Shiller Housing Price Index")
+  labs(title="Housing Price Fluctuation of Three Major Cities In US",x="Time (2000-2021)",y="Case-Shiller Housing Price Index")+
+  theme_solarized_2()
 
    ggplotly(data_housing_plotly, tooltip = "text")
      
@@ -100,10 +103,11 @@ select(DATE,Data_pop,City)%>%
 
 ```{r}
 data_pop_plotly <- data_pop_final%>%
-ggplot(mapping=aes(x = DATE,y=Data_pop,color=City,group=1, text = paste("Date:",DATE, "\n")))+
+ggplot(mapping=aes(x = DATE,y=Data_pop,color=City,group=1, text = paste("</br>Date:",DATE, '</br> Value:',Data_pop)))+
   geom_line()+
   scale_x_discrete(breaks=12)+
-  labs(title="Population of Three Major Cities in US Overtime",x="Time (2000-2020)",y="Metro Population In Thousands")
+  labs(title="Population of Three Major Cities in US Overtime",x="Time (2000-2020)",y="Metro Population In Thousands")+
+  theme_foundation()
 
 ggplotly(data_pop_plotly, tooltip = "text")
      
@@ -143,11 +147,12 @@ select(DATE,Data_Income,States)%>%
 
 ```{r}
 data_Income_plotly <- data_Income_final%>%
-ggplot(mapping=aes(x = DATE,y=Data_Income,color=States,group=1, text = paste("Date:",DATE, "\n")))+
+ggplot(mapping=aes(x = DATE,y=Data_Income,color=States,group=1, text = paste("</br>Date:",DATE, '</br> Value:',Data_Income)))+
   geom_line()+
   scale_x_discrete(breaks=12)+
   geom_smooth(method="lm",se=FALSE,formula=y~x)+
-  labs(title="Real Median Household Income Of Three Cities",x="Time (2000-2020)",y="US Adjusted Dollar")
+  labs(title="Real Median Household Income Of Three Cities",x="Time (2000-2020)",y="US Adjusted Dollar")+
+  theme_foundation()
 
    ggplotly(data_Income_plotly, tooltip = "text")
      
@@ -158,10 +163,11 @@ ggplot(mapping=aes(x = DATE,y=Data_Income,color=States,group=1, text = paste("Da
 housing_supply_USA <- read_csv("MSACSR.csv")
 
 supply_plotly <- housing_supply_USA%>%
-ggplot(mapping=aes(x = DATE,y=MSACSR,group=1, text = paste("Date:",DATE, "\n")))+
+ggplot(mapping=aes(x = DATE,y=MSACSR,group=1, text = paste("</br>Date:",DATE, '</br> Value:',MSACSR)))+
   geom_line()+
   geom_smooth(method="lm",se=FALSE)+
-  labs(title = "Monthly Supply of Houses in the United States",x= "Date(2000-2021)",y="Month's Supply")
+  labs(title = "Monthly Supply of Houses in the United States",x= "Date(2000-2021)",y="Month's Supply")+
+  theme_foundation()
 
 ggplotly(supply_plotly, tooltip = "text")
 ```
