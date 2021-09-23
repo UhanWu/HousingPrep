@@ -11,11 +11,9 @@ library(tidyverse)
 library(lubridate)
 library(dplyr)
 library(plotly)
-library(gganimate)
-library(gifski)
 library(png)
-library(patchwork)
-library(gapminder)
+
+
 library(cowplot)
 library(ggplot2)
 library(ggthemes)
